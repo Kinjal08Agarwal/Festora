@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- This meta tag is critical for your layout to work on desktop vs mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Schedule - Virushka's Wedding</title>
+    <link href="festora.css" rel="stylesheet" >
+    
+    <!-- === STYLES FOR EVENTS PAGE === -->
+    <style>
+        /* Style for the active nav link */
+        .main-nav a.active-link {
+            color: #d94f33;
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .event-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 40px 160px;
+            background-color: #fff5f2; /* Light background to match */
+            align-items: center;
+            align-content: center;
+        }
+        .event-title {
+            font-family: 'Brush Script MT', cursive; /* Matches RSVP title */
+            font-size: 3.5rem;
+            color: #4b2e2e;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .event-card {
+            background-color: white;
+            border: 1px solid #ffd9cc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex; /* Use flex for two columns */
+            flex-wrap: wrap; /* Allow wrapping on mobile by default */
+        }
+        
+        /* Left side of the card (image) */
+        .event-card-image {
+            width: 100%;
+            min-height: 250px; /* Set a min-height for mobile */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Right side of the card (details) */
+        .event-card-details {
+            padding: 25px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.7;
+            width: 100%;
+            text-align: center;
+            padding-left: 145px;
+        }
+
+        /* Use flex to create two columns inside details on desktop */
+        .event-details-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event-info, .event-schedule {
+            flex: 1; /* Each takes half the space */
+            min-width: 250px; /* Ensures they stack on small screens */
+        }
+
+        .event-card h3 {
+            font-family: 'Georgia', serif;
+            font-size: 1.75rem;
+            color: #d94f33; /* Accent color */
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .event-info p {
+            margin-bottom: 10px;
+        }
+
+        .event-info strong {
+            color: #4b2e2e; /* Dark brown */
+            font-weight: bold;
+            display: block; /* Makes the label on its own line */
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* List for the inner event schedule */
+        .event-schedule-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-block; /* <-- ADD THIS LINE */
+            text-align: center; /* <-- ADD THIS LINE */
+        }
+        .event-schedule-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        .event-schedule-list li:last-child {
+            border-bottom: none;
+        }
+        .event-schedule-list span {
+            font-weight: bold;
+            color: #4b2e2e;
+            margin-right: 10px;
+        }
+
+        /* === THIS IS THE FIX === */
+        /* Media query for desktop layout */
+        @media (min-width: 768px) {
+            .event-card {
+                /* 1. This forces the image and text to be side-by-side *
+            }
+
+            .event-card-image {
+                /* 2. This sets the image width */
+                width: 70%; /* Image takes 35% */
+                /* 3. This ensures the div stretches to the text height */
+                min-height: 100%;
+            }
+            .event-card-details {
+                width: 65%; /* Details take 65% */
+            }
+        }
+    </style>
+    <!-- === END STYLES === -->
+
+</head>
+<body>
+    <!-- This header is copied from your other pages, with links updated -->
+    <header class="site-header">
+        <a href="#" id="logout-btn">Log Out</a>
+        <div class="header-content-wrapper">
+            <div class="logo-container">
+                <img src="festora_logo.png" alt="Festora Logo" style="height: 100px; margin-right: 15px;">
+                <h1 style="font-family: 'Georgia', cursive; font-size: 30px; color: #4b2e2e;">Festora</h1>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <!-- Updated links -->
+            <a href="festora.html">Home</a>
+            <a href="events.html" class="active-link">Events</a> <!-- Active link -->
+            <a href="photos.html">Photos</a>
+            <a href="stay_info.html">Stay Info</a>
+            <a href="#">RSVP</a>
+        </nav>
+    </header>
+
+    <!-- === EVENT DETAILS CONTENT === -->
+    <h2 class="event-title">Schedule of Events</h2>
+    <div class="event-container">
+
+
+        <!-- Event 1: Mehendi -->
+        <div class="event-card">
+            <!-- This div is the image. It will now stretch. -->
+            <div class="event-card-image" style="background-image: url('https://i.pinimg.com/736x/f2/19/71/f2197128ef5cbe5a003944afe7697c2c.jpg')"></div>
+            <div class="event-card-details">
+                <h3>Mehendi</h3>
+                <div class="event-details-flex">
+                    <div class="event-info">
+                        <p><strong>Timing:</strong> June 5, 2025 | 11:00 AM - 3:00 PM</p>
+                        <p><strong>Place:</strong> The Peacock Lawn</p>
+                        <p><strong>Dress Code:</strong> Shades of Green, Yellow, or Pastels</p>
+                    </div>
+                    <div class="event-schedule">
+                        <strong>Event Schedule:</strong>
+                        <ul class="event-schedule-list">
+                            <li><span>11:00 AM:</span> Guests Arrive & Welcome Drinks</li>
+                            <li><span>11:30 AM:</span> Mehendi Application Begins</li>
+                            <li><span>1:00 PM:</span> Lunch & Folk Music</li>
+                            <li><span>2:30 PM:</span> Dance Performances by Friends</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event 2: Sangeet -->
+        <div class="event-card">
+            <div class="event-card-image" style="background-image: url('https://i.pinimg.com/736x/a8/1e/1f/a81e1fd8c1e93ff9488dcc5c3585280d.jpg')"></div>
+            <div class="event-card-details">
+                <h3>Sangeet</h3>
+                <div class="event-details-flex">
+                    <div class="event-info">
+                        <p><strong>Timing:</strong> June 5, 2025 | 7:00 PM Onwards</p>
+                        <p><strong>Place:</strong> The Royal Ballroom</p>
+                        <p><strong>Dress Code:</strong> Glitz & Glam (Cocktail Attire)</p>
+                    </div>
+                    <div class="event-schedule">
+                        <strong>Event Schedule:</strong>
+                        <ul class="event-schedule-list">
+                            <li><span>7:00 PM:</span> Cocktails & Appetizers</li>
+                            <li><span>8:00 PM:</span> Family & Friends Performances</li>
+                            <li><span>9:30 PM:</span> Dinner is Served</li>
+                            <li><span>10:30 PM:</span> DJ & Open Dance Floor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 3: Haldi -->
+        <div class="event-card">
+            <div class="event-card-image" style="background-image: url('https://i.pinimg.com/736x/1b/9b/46/1b9b4671a1fda7d67555cef845a8d9f6.jpg')"></div>
+            <div class="event-card-details">
+                <h3>Haldi</h3>
+                <div class="event-details-flex">
+                    <div class="event-info">
+                        <p><strong>Timing:</strong> June 6, 2025 | 9:00 AM - 11:00 AM</p>
+                        <p><strong>Place:</strong> Poolside Deck</p>
+                        <p><strong>Dress Code:</strong> Traditional Yellow Attire</p>
+                    </div>
+                    <div class="event-schedule">
+                        <strong>Event Schedule:</strong>
+                        <ul class="event-schedule-list">
+                            <li><span>9:00 AM:</span> Guests Seated</li>
+                            <li><span>9:30 AM:</span> Haldi Ceremony Begins</li>
+                            <li><span>10:30 AM:</span> Floral Showers & Blessings</li>
+                            <li><span>11:00 AM:</span> Brunch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Event 4: Shaadi (Wedding) -->
+        <div class="event-card">
+            <div class="event-card-image" style="background-image: url('https://i.pinimg.com/736x/e2/bf/3d/e2bf3d6020b1ff1da5d57d28c6df2e17.jpg')"></div>
+            <div class="event-card-details">
+                <h3>Shaadi (The Wedding)</h3>
+                <div class="event-details-flex">
+                    <div class="event-info">
+                        <p><strong>Timing:</strong> June 6, 2025 | 5:00 PM Onwards</p>
+                        <p><strong>Place:</strong> Sekhon Events Place (Main Courtyard)</p>
+                        <p><strong>Dress Code:</strong> Traditional & Formal Attire</p>
+                    </div>
+                    <div class="event-schedule">
+                        <strong>Event Schedule:</strong>
+                        <ul class="event-schedule-list">
+                            <li><span>5:00 PM:</span> Baraat Assembly & Procession</li>
+                            <li><span>6:00 PM:</span> Varmala Ceremony</li>
+                            <li><span>6:30 PM:</span> Pheras (Wedding Vows)</li>
+                            <li><span>8:00 PM:</span> Grand Reception & Dinner</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- === END NEW CONTENT === -->
+
+    <!-- This is your existing Scroll to Top button -->
+    <button onclick="scrollToTop()" style="position: fixed; bottom: 20px; right: 20px; background-color: #ffb3c6; color: white; border: none; border-radius: 50%; padding: 15px 20px; font-size: 18px; cursor: pointer; box-shadow: 0px 0px 10px rgba(0,0,0,0.2);">
+        ↑
+    </button>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script> 
+    
+    <!-- This is your existing Firebase script, copied exactly for auth -->
+    <!-- (I also fixed the missing '=' in 'type="module"') -->
+    <script type="module">
+        // --- 1. FIREBASE IMPORTS ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+        
+        // --- 2. YOUR FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHRs1n--BpE6XclVAzJUxo4hdACXIXsaE",
+            authDomain: "festorawebsite.firebaseapp.com",
+            projectId: "festorawebsite",
+            storageBucket: "festorawebsite.firebasestorage.app",
+            messagingSenderId: "290693394977",
+            appId: "1:290693394977:web:c68845e1c0ee7978f72960",
+            measurementId: "G-2HC0CCB4JN"
+        };
+
+        // --- 3. INITIALIZE FIREBASE ---
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // --- 4. AUTHENTICATION & LOGOUT LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // A. Check if user is logged in
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in, they can stay.
+                    console.log("User is logged in:", user.email);
+                } else {
+                    // No user is signed in. Redirect to login page.
+                    console.log("No user signed in. Redirecting to login page.");
+                    window.location.href = 'index.html'; 
+                }
+            });
+
+            // B. Add listener for the logout button
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop the link from navigating
+                    signOut(auth).then(() => {
+                        console.log("User signed out successfully.");
+                        // onAuthStateChanged will catch this and redirect
+                    }).catch((error) => {
+                        console.error("Sign out error:", error);
+                    });
+                });
+            }
+        }); 
+    </script>
+</body>
+</html>

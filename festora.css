@@ -1,0 +1,464 @@
+/* --- HEADER STYLES --- */
+html {
+    scroll-behavior: smooth;
+}
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This pushes logo left and nav right */
+    padding: 10px 30pxS;
+    background-color: #fff5f2;
+    border-bottom: 1px solid #ffd9cc;
+    flex-wrap: wrap;
+}/* Allows nav to wrap below logo on small screens */
+
+
+/* This new wrapper holds the logo and nav */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* .main-nav {
+    display: flex;
+    align-items: self-end; 
+    gap: 100px; 
+    border-left: 4px; 
+    padding-left: 20px; 
+    padding-right: 70px;
+} */
+.main-nav {
+    display: flex;
+    align-items: center; /* <-- This vertically centers the links */
+    gap: 55px; /* <-- Reduced the gap to a reasonable size */
+    
+    /* --- This is the corrected partition line --- */
+    border-left: 1px; 
+    padding-top: 15px;
+    padding-left: 10px; /* <-- Changed to match the gap */
+    padding-right: 10px; /* <-- Removed the extra padding */
+}
+.main-nav a {
+    text-decoration: none;
+    color: #92240d;; /* Match title color */
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 6px 55px;
+    padding-left: 35px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: #ffd9cc; /* Light hover effect */
+}
+/* --- NEW LOGOUT BUTTON STYLE --- */
+#logout-btn {
+    position: absolute;   /* Lifts the button out of the flow */
+    top: 10px;            /* 10px from the top edge */
+    right: 20px;          /* 20px from the right edge */
+    
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4b2e2e;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#logout-btn:hover {
+    background-color: #d94f33; /* A reddish hover color */
+    color: white;
+}
+/* --- END HEADER STYLES --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background-color: #ffe6e1;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 0;
+}
+
+.left {
+    flex: 1;
+    padding-left: 75px;
+    text-align: center;
+    color: #d94f33;
+}
+
+.left h1 {
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+
+.left p {
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+.left .names {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 65px;
+}
+
+.image-circle {
+    width: 350px;
+    height: 380px;
+    border-radius: 50% 50% 0 0;
+    overflow: hidden;
+    border: 3px solid #d94f33;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.image-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding-top: 45px;}
+        .header-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .main-nav {
+        width: 100%;
+        justify-content: center; /* Center nav items on mobile */
+        gap: 10px;
+        border-left: none; /* Remove partition on mobile */
+        padding-left: 0;   /* Remove padding on mobile */
+        padding-right: 0;  /* Remove padding on mobile */
+    }
+    .wish-generator-box {
+        flex-direction: column; /* Stack elements vertically on small screens */
+        gap: 10px;
+    }
+    .wish-generator-box input[type="text"],
+    .wish-generator-box button {
+        width: 100%; /* Make all input/buttons full width */
+        flex-grow: 0;
+    }
+    .container {
+        flex-direction: column;
+    }
+
+    .image-circle {
+        width: 250px;
+        height: 300px;
+    }
+
+    .left h1 {
+        font-size: 28px;
+    }
+    /* --- ADDED FOR HEADER --- */
+    .site-header {
+        flex-direction: column; /* Stack logo and nav */
+        gap: 20px;
+    }
+
+    .main-nav {
+        width: 100%;
+        justify-content: center; /* Center nav items on mobile */
+        gap: 10px;
+    }
+
+    .main-nav a {
+        font-size: 16px;
+    }
+}
+.event-list-container {
+    background-color: #ffe6e1;
+    padding: 40px;
+}
+
+.event-list-container h2 {
+    color: #d94f33;
+    font-family: Georgia, serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center; /* Centered the title */
+}
+
+.event-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.event-card {
+    width: 300px;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Added rounded corners */
+    overflow: hidden; /* Ensures image respects border radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px); /* Adds a slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.event-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.event-card p {
+    padding: 15px; /* Increased padding */
+    margin: 0;
+    font-weight: bold;
+    color: #333; /* Darker text */
+}
+
+/* --- SCROLL TO TOP BUTTON --- */
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffb3c6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.scroll-to-top-btn:hover {
+    background-color: #ff9cb0;
+}
+
+
+/* === NEW GEMINI FEATURE STYLES (Added to end of file) === */
+.gemini-feature-section {
+    background-color: #fff5f2; /* Matches header */
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    border-top: 1px solid #ffd9cc;
+}
+
+.gemini-feature-section h2 {
+    font-size: 2.5rem;
+    color: #4b2e2e;
+    font-family: 'Brush Script MT', cursive; /* Matches RSVP title */
+    margin-bottom: 10px;
+}
+
+.gemini-feature-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.wish-generator-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ffd9cc;
+    text-align: left;
+    display: flex; /* Make it a flex container */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    align-items: center; /* Vertically align items */
+    gap: 15px; /* Space between elements */
+    justify-content: space-between; /* Spread elements out */
+}
+
+.wish-generator-box label {
+    display: block; /* Ensures label takes full width */
+    font-weight: bold;
+    color: #4b2e2e;
+    margin-bottom: 0; /* Adjust margin as flex handles spacing */
+    width: 100%; /* Make label span full width */
+}
+
+.wish-generator-box input[type="text"] {
+    flex-grow: 1; /* Allow input to take available space */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+    margin-bottom: 0; /* Adjust margin as flex handles spacing */
+    min-width: 200px; /* Ensure input isn't too small */
+}
+
+.wish-generator-box button {
+    background-color: #00acc1; /* Matches login button */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0; /* Adjust margin as flex handles spacing */
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.wish-generator-box button:hover {
+    background-color: #008a9a;
+}
+
+.wish-generator-box button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#copyWishBtn {
+    background-color: #6c757d;
+}
+
+#copyWishBtn:hover {
+    background-color: #5a6268;
+}
+
+#wishLoading {
+    margin: 15px 0;
+    color: #555;
+    font-style: italic;
+    width: 100%; /* Make loading message span full width */
+    text-align: center;
+}
+
+.wish-generator-box textarea {
+    width: 100%; /* Make textarea span full width */
+    height: 150px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Georgia', serif;
+    margin-top: 20px;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color: #f9f9f9;
+}
+
+.rsvp-section {
+    background-color: #ecd3d8;
+    padding: 32px 20px;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.rsvp-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.rsvp-image img {
+    width: 300px;
+    
+    border: 3px solid #000;
+    border-radius: 10px;
+}
+
+.rsvp-details {
+    max-width: 400px;
+    text-align: left;
+    color: #000;
+}
+
+.rsvp-details h2 {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.rsvp-details p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.rsvp-box {
+    display: inline-block;
+    background-color: white;
+    border: 2px solid #000;
+    padding: 8px 14px;
+    font-family: 'Courier New', monospace;
+    margin-top: 6px;
+    font-weight: bold;
+}
+
+.social-icons {
+    display: flex;
+    gap: 0px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 1.4rem;
+    color: black;
+    text-decoration: none;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: block;
+    cursor: pointer;
+}
+/* --- NEW AESTHETIC STYLES --- */
+.script-font {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem; /* 48px */
+    color: #c94026; /* A slightly richer red */
+    margin-top: 5px;
+}
+
+.flourish-divider {
+    margin: 15px auto; /* Center the flourish */
+    opacity: 0.6;
+}
+
+/* Make the main welcome text a bit smaller to emphasize the names */
+.left h1 {
+    font-size: 36px;
+}

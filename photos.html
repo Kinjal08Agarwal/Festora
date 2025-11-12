@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery - Virushka's Wedding</title>
+    <link href="festora.css" rel="stylesheet" >
+    
+    <!-- === NEW STYLES FOR PHOTO GALLERY === -->
+    <style>
+        /* Style for the active nav link */
+        .main-nav a.active-link {
+            color: #d94f33;
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fff5f2; /* Light background to match */
+        }
+        .gallery-title {
+            font-family: 'Brush Script MT', cursive; /* Matches RSVP title */
+            font-size: 3.5rem;
+            color: #4b2e2e;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .photo-card {
+            background-color: white;
+            border: 1px solid #ffd9cc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        /* --- NEW STYLE FOR PHOTO LABELS --- */
+        .photo-label {
+            padding: 12px 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #4b2e2e; /* Matches your header text */
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+        }
+    </style>
+    <!-- === END NEW STYLES === -->
+
+</head>
+<body>
+    <!-- This header is copied from festora.html, with links updated -->
+    <header class="site-header">
+        <a href="#" id="logout-btn">Log Out</a>
+        <div class="header-content-wrapper">
+            <div class="logo-container">
+                <img src="festora_logo.png" alt="Festora Logo" style="height: 100px; margin-right: 15px;">
+                <h1 style="font-family: 'Georgia', cursive; font-size: 30px; color: #4b2e2e;">Festora</h1>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <!-- Updated links -->
+            <a href="festora.html">Home</a>
+            <a href="festora.html#events-section">Events</a>
+            <a href="photos.html" class="active-link">Photos</a> <!-- Active link -->
+            <a href="#">Stay Info</a>
+            <a href="#">RSVP</a>
+        </nav>
+    </header>
+
+    <!-- === NEW PHOTO GALLERY CONTENT === -->
+    <div class="gallery-container">
+        <h2 class="gallery-title">Photo Gallery</h2>
+        <div class="photo-grid">
+            <!-- Row 1 -->
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/736x/c5/d5/c5/c5d5c525c341a556c6d623f96c63b19e.jpg" alt="Groom Portrait">
+                <p class="photo-label">Groom Portrait</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/736x/2f/c9/4b/2fc94bde3c4ca375b5d22a4785457579.jpg" alt="Bridal Portrait">
+                <p class="photo-label">Bridal Portrait</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/736x/e6/04/18/e60418c8587608d7b4445e7c9d1e7369.jpg" alt="Sangeet">
+                <p class="photo-label">Sangeet</p>
+            </div>
+            
+            <!-- Row 2 -->
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/736x/42/fc/4b/42fc4b8ffb47d732b44f6126e5ee05a1.jpg" alt="Mehendi">
+                <p class="photo-label">Mehendi</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/474x/a9/f8/9b/a9f89b66736d0ebcd20eb4564e364fa7.jpg" alt="Haldi">
+                <p class="photo-label">Haldi</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/1200x/89/76/2b/89762b1d950c64011c66b9d7e60509b3.jpg" alt="Couple Photo">
+                <p class="photo-label">Couple Photo</p>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/1200x/43/bc/b5/43bcb5d61f8287ff8b7b029c8bf09f0e.jpg" alt="Family Photo">
+                <p class="photo-label">Family Photo</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/1200x/63/2f/5e/632f5e9b1cb2dfc18f49f26e156971ff.jpg" alt="Decorations">
+                <p class="photo-label">Decorations</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/736x/86/04/60/8604607fbce1a7515824ada352bdbd51.jpg" alt="Wedding Ceremony">
+                <p class="photo-label">Wedding Ceremony</p>
+            </div>
+            <div class="photo-card">
+                <img src="https://i.pinimg.com/736x/89/d9/7b/89d97b74272a4daa6c84152f39c2ad65.jpg" alt="Guest photos">
+                <p class="photo-label">Guest Photos</p>
+            </div>
+    </div>
+    <!-- === END NEW CONTENT === -->
+
+    <!-- This is your existing Scroll to Top button -->
+    <button onclick="scrollToTop()" style="position: fixed; bottom: 20px; right: 20px; background-color: #ffb3c6; color: white; border: none; border-radius: 50%; padding: 15px 20px; font-size: 18px; cursor: pointer; box-shadow: 0px 0px 10px rgba(0,0,0,0.2);">
+        ↑
+    </button>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script> 
+      
+    <!-- This is your existing Firebase/AI script, copied exactly for auth -->
+    <script type="module">
+        // --- 1. FIREBASE IMPORTS ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+        
+        // --- 2. YOUR FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHRs1n--BpE6XclVAzJUxo4hdACXIXsaE",
+            authDomain: "festorawebsite.firebaseapp.com",
+            projectId: "festorawebsite",
+            storageBucket: "festorawebsite.firebasestorage.app",
+            messagingSenderId: "290693394977",
+            appId: "1:290693394977:web:c68845e1c0ee7978f72960",
+            measurementId: "G-2HC0CCB4JN"
+        };
+
+        // --- 3. INITIALIZE FIREBASE ---
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // --- 4. AUTHENTICATION & LOGOUT LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // A. Check if user is logged in
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    // User is signed in, they can stay.
+                    console.log("User is logged in:", user.email);
+                } else {
+                    // No user is signed in. Redirect to login page.
+                    console.log("No user signed in. Redirecting to login page.");
+                    window.location.href = 'index.html'; 
+                }
+            });
+
+            // B. Add listener for the logout button
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop the link from navigating
+                    signOut(auth).then(() => {
+                        console.log("User signed out successfully.");
+                        // onAuthStateChanged will catch this and redirect
+                    }).catch((error) => {
+                        console.error("Sign out error:", error);
+                    });
+                });
+            }
+
+        }); // End of Auth/Logout logic
+
+        // --- 5. AI WEDDING WISH ASSISTANT LOGIC ---
+        // (This is your existing code for the AI feature)
+        // (Note: The elements for this don't exist on this page, but the code is here
+        // if you want to add the feature later)
+
+        // --- Configuration ---
+        const API_KEY = "AIzaSyB3u9QYKiU0P2Ii5pr7ocQzjUJEr87AQ2E"; // Your Gemini Key
+        const TEXT_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+        const MAX_RETRIES = 3;
+
+        // --- Text Generation API Call ---
+        async function callGeminiApi(userPrompt, systemPrompt) {
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            for (let i = 0; i < MAX_RETRIES; i++) {
+                try {
+                    const response = await fetch(TEXT_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text;
+                    } else {
+                        throw new Error("Invalid response structure from API.");
+                    }
+                } catch (error) {
+                    console.error(`Error calling Gemini API (Attempt ${i + 1}/${MAX_RETRIES}):`, error);
+                    if (i === MAX_RETRIES - 1) {
+                        return "Error: Unable to generate text. Please try again later.";
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))); // Exponential backoff
+                }
+            }
+        }
+
+        // --- Event Listeners for AI Wish Assistant ---
+        // (These will only run if the elements are on the page)
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateWishBtn = document.getElementById('generateWishBtn');
+            if (!generateWishBtn) return; // Exit if AI box isn't on this page
+
+            const wishKeywords = document.getElementById('wishKeywords');
+            const wishLoading = document.getElementById('wishLoading');
+            const wishResult = document.getElementById('wishResult');
+            const copyWishBtn = document.getElementById('copyWishBtn');
+
+            // 1. AI Wish Generator Button
+            generateWishBtn.addEventListener('click', async () => {
+                if (API_KEY === "") {
+                    wishResult.value = "Error: API Key is missing.";
+                    return;
+                }
+                const keywords = wishKeywords.value;
+                if (!keywords) {
+                    wishResult.value = "Please enter some keywords first.";
+                    return;
+                }
+                wishLoading.style.display = 'block';
+                wishResult.value = '';
+                copyWishBtn.style.display = 'none';
+                generateWishBtn.disabled = true;
+
+                const userPrompt = `Write a short, heartfelt wedding wish (about 3-4 sentences) for Virat and Anushka. Base it on these ideas: ${keywords}`;
+                const systemPrompt = "You are a helpful wedding guest assistant... (same as before)";
+
+                const generatedText = await callGeminiApi(userPrompt, systemPrompt);
+
+                wishLoading.style.display = 'none';
+                wishResult.value = generatedText;
+                generateWishBtn.disabled = false;
+                
+                if (!generatedText.startsWith("Error:")) {
+                     copyWishBtn.style.display = 'inline-block';
+                     copyWishBtn.textContent = 'Copy to Clipboard';
+                }
+            });
+
+            // 2. Copy Wish Button
+            copyWishBtn.addEventListener('click', () => {
+                wishResult.select();
+                try {
+                    document.execCommand('copy');
+                    copyWishBtn.textContent = 'Copied!';
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    copyWishBtn.textContent = 'Copy Failed';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

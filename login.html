@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festora Login</title>
+  <link rel="stylesheet" href="style1.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <style>
+        .auth-message {
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #d94f33; /* Error color */
+        }
+        .auth-message.success {
+            color: #008a9a; /* Success color */
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <div class="overlay">
+        <h1 class="brand">FESTORA</h1>
+        <p class="tagline">Simplify and Enhance Your Events</p>
+      </div>
+    </div>
+    <div class="right-side">
+      <h2 class="welcome">Welcome</h2>
+      <p id="auth-message" class="auth-message"></p>
+
+      <form class="login-form" id="login-form">
+        <input type="email" placeholder="Email" class="input-field" id="email-input" required />
+        <input type="password" placeholder="Password" class="input-field" id="password-input" required />
+        <a href="#" class="forgot-password" id="forgot-password-btn">Forgot Password?</a>
+        
+        <!-- Fixed login button (removed nested <a> tag) -->
+        <button type="submit" class="btn login" id="login-btn">Login</button>
+        <button type="button" class="btn signup" id="signup-btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+  <script type="module">
+    // --- 1. ALL IMPORTS ARE AT THE TOP ---
+    // Imports for Firebase v12.5.0 (as you had in your file)
+    import { initializeApp, setLogLevel } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+    import { 
+        getAuth, 
+        onAuthStateChanged,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+    // --- 2. WRAP ALL CODE in DOMContentLoaded ---
+    // This waits for the HTML page (buttons, form) to be fully loaded
+    // before the script tries to find them. This fixes the "dead buttons" problem.
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- 3. YOUR FIREBASE CONFIGURATION ---
+        // This is your config, which is correct.
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHRs1n--BpE6XclVAzJUxo4hdACXIXsaE",
+            authDomain: "festorawebsite.firebaseapp.com",
+            projectId: "festorawebsite",
+            storageBucket: "festorawebsite.firebasestorage.app",
+            messagingSenderId: "290693394977",
+            appId: "1:290693394977:web:c68845e1c0ee7978f72960",
+            measurementId: "G-2HC0CCB4JN"
+        };
+
+        // --- 4. INITIALIZE FIREBASE ---
+        // We only initialize it ONCE, using your config.
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // Enable debug logging
+        setLogLevel('Debug');
+
+        // --- 5. GET HTML ELEMENTS ---
+        // This code now runs safely AFTER the page has loaded.
+        const loginForm = document.getElementById('login-form');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const forgotPasswordBtn = document.getElementById('forgot-password-btn');
+        const emailInput = document.getElementById('email-input');
+        const passwordInput = document.getElementById('password-input');
+        const messageEl = document.getElementById('auth-message');
+
+        // --- 6. HELPER FUNCTION ---
+        function showMessage(text, isError = true) {
+            messageEl.textContent = text;
+            if (isError) {
+                messageEl.classList.remove('success');
+            } else {
+                messageEl.classList.add('success');
+            }
+        }
+
+        // --- 7. AUTH STATE LISTENER ---
+        // Redirects if already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in.
+                console.log("User is signed in, redirecting...");
+                window.location.href = 'festora.html'; // Redirect to your main app page
+            } else {
+                // User is signed out.
+                console.log("User is signed out.");
+            }
+        });
+
+        // --- 8. EVENT LISTENERS ---
+
+        // LOGIN (Form Submission)
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showMessage("Please enter both email and password.");
+                return;
+            }
+
+            try {
+                showMessage("Logging in...", false);
+                await signInWithEmailAndPassword(auth, email, password);
+                // The onAuthStateChanged listener (section 7) will see the
+                // login and handle the redirect automatically.
+            } catch (error) {
+                console.error("Login Error:", error.message);
+                showMessage(getFriendlyErrorMessage(error.code));
+            }
+        });
+
+        // SIGN UP
+        signupBtn.addEventListener('click', async () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showMessage("Please enter both email and password to sign up.");
+                return;
+            }
+
+            try {
+                showMessage("Creating account...", false);
+                await createUserWithEmailAndPassword(auth, email, password);
+                // The onAuthStateChanged listener (section 7) will see the
+                // new user and handle the redirect automatically.
+            } catch (error) {
+                console.error("Sign Up Error:", error.message);
+                showMessage(getFriendlyErrorMessage(error.code));
+            }
+        });
+
+        // FORGOT PASSWORD
+        forgotPasswordBtn.addEventListener('click', async (e) => {
+            e.preventDefault(); 
+            const email = emailInput.value;
+
+            if (!email) {
+                showMessage("Please enter your email to reset your password.");
+                return;
+            }
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+                showMessage("Password reset email sent! Check your inbox.", false);
+            } catch (error) {
+                console.error("Password Reset Error:", error.message);
+                showMessage(getFriendlyErrorMessage(error.code));
+            }
+        });
+        
+        // --- 9. FRIENDLY ERROR MESSAGES ---
+        function getFriendlyErrorMessage(errorCode) {
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                    return 'Please enter a valid email address.';
+                case 'auth/user-not-found':
+                case 'auth/invalid-credential':
+                    return 'Invalid email or password. Please try again.';
+                case 'auth/wrong-password':
+                    return 'Invalid email or password. Please try again.';
+                case 'auth/email-already-in-use':
+                    return 'This email is already in use. Please log in.';
+                case 'auth/weak-password':
+                    return 'Password is too weak. It should be at least 6 characters.';
+                default:
+                    return 'An error occurred. Please try again.';
+            }
+        }
+
+    }); // <-- This closes the new DOMContentLoaded listener
+</script>
+</body>
+</html>
